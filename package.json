@@ -93,13 +93,14 @@
     "husky": "^4.2.1",
     "imports-loader": "0.8.0",
     "jest-cli": "24.8.0",
-    "lint-staged": "8.2.1",
+    "lint-staged": "^8.2.1",
     "node-plop": "0.18.0",
     "node-sass": "^4.12.0",
     "null-loader": "3.0.0",
     "plop": "2.3.0",
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-loader": "^3.0.0",
+    "prettier": "^1.19.1",
     "react-test-renderer": "^16.8.6",
     "rimraf": "2.6.3",
     "sass-loader": "^7.1.0",
@@ -117,5 +118,22 @@
   "engines": {
     "node": ">=8.15.1",
     "npm": ">=5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint",
+      "npm run eslint:fix",
+      "git add --force"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add --force"
+    ]
   }
 }
